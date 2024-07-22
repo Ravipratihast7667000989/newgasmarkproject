@@ -120,10 +120,16 @@ app.put("/booking/:_id",async(req,res)=>{
 });
 
 
-    app.get('/detsils', async function(req,res){
-        var getinfo= await newconnection.find();
+    app.get('/detsils/firstname', async function(req,res){
+        var getinfo= await newconnection.findOne({firstname:req.params.firstname});
         res.json(getinfo);
+
+    });
         
+        app.get('/details', async function(req,res){
+            var getinfo= await newconnection.find();
+            res.json(getinfo);
+
 
     });
     //delete api
