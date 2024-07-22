@@ -120,7 +120,7 @@ app.put("/booking/:_id",async(req,res)=>{
 });
 
 
-    app.get('/detsils/firstname', async function(req,res){
+    app.get('/details/firstname', async function(req,res){
         var getinfo= await newconnection.findOne({firstname:req.params.firstname});
         res.json(getinfo);
 
