@@ -39,6 +39,7 @@ const newConnectionSchema ={
     agency:String,
     nationality:String,
     cylindertype:String,
+    image:String,
     
    
    
@@ -48,7 +49,7 @@ const newconnection = mongooes.model("newconnection",newConnectionSchema);
 
  
 // insert data
-app.post("/post",async(req,res)=>{
+app.post("/post",upload.single('image'),async(req,res)=>{
    
     const data = new newconnection({
     firstname:req.body.firstname,
@@ -63,6 +64,7 @@ app.post("/post",async(req,res)=>{
     agency:req.body.agency,
     nationality:req.body.nationality,
     cylindertype:req.body.cylindertype,
+    image:req.file.path
 
 
    //
@@ -120,8 +122,8 @@ app.put("/booking/:_id",async(req,res)=>{
 });
 
 
-    app.get('/details/firstname', async function(req,res){
-        var getinfo= await newconnection.findOne({firstname:req.params.firstname});
+    app.get('/details/:firstname', async function(req,res){
+        var getinfo= await newconnection.find({firstname:req.params.firstname});
         res.json(getinfo);
 
     });
