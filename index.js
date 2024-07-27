@@ -39,7 +39,7 @@ const newConnectionSchema ={
     agency:String,
     nationality:String,
     cylindertype:String,
-    image:String,
+    
     
    
    
@@ -64,7 +64,7 @@ app.post("/post",async(req,res)=>{
     agency:req.body.agency,
     nationality:req.body.nationality,
     cylindertype:req.body.cylindertype,
-    image:req.file.path
+ 
 
 
    //
