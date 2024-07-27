@@ -3,7 +3,7 @@
 // ("mongodb+srv://ravipratihast71:LCtQ1SB82Dr5ITu3@cluster0.hkwcuwh.mongodb.net/GasMark_database")
   
 
- const multer = require('multer')
+// const multer = require('multer')
 const  express = require('express');
 const cors = require('cors');
 const mongooes = require('mongoose'); 
