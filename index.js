@@ -49,7 +49,7 @@ const newconnection = mongooes.model("newconnection",newConnectionSchema);
 
  
 // insert data
-app.post("/post",upload.single('image'),async(req,res)=>{
+app.post("/post",async(req,res)=>{
    
     const data = new newconnection({
     firstname:req.body.firstname,
@@ -153,15 +153,15 @@ app.put("/booking/:_id",async(req,res)=>{
 
 
 
-const storage = multer.diskStorage({
-    destination: function(req,file,cb){
-        cb(null , './uploads');
-    },
-    filename: function(req,file,cb){
-        cb(null,Date.now() +'__' + file.originalname);
-    },
-});
-const upload= multer({storage:storage});
+// const storage = multer.diskStorage({
+//     destination: function(req,file,cb){
+//         cb(null , './uploads');
+//     },
+//     filename: function(req,file,cb){
+//         cb(null,Date.now() +'__' + file.originalname);
+//     },
+// });
+// const upload= multer({storage:storage});
 
 
 
