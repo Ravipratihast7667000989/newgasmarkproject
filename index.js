@@ -3,7 +3,7 @@
 // ("mongodb+srv://ravipratihast71:LCtQ1SB82Dr5ITu3@cluster0.hkwcuwh.mongodb.net/GasMark_database")
   
 
-// const multer = require('multer')
+ const multer = require('multer')
 const  express = require('express');
 const cors = require('cors');
 const mongooes = require('mongoose'); 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT||9000
  app.use(bodyParser.urlencoded({extended : false}));
  app.use(bodyParser.json());
  app.use(cors());
-mongooes.connect("mongodb+srv://ravipratihast71:LCtQ1SB82Dr5ITu3@cluster0.hkwcuwh.mongodb.net/GasMark_DB").then( function(){
+mongooes.connect("mongodb+srv://ravipratihast71:LCtQ1SB82Dr5ITu3@cluster0.hkwcuwh.mongodb.net/Metrimonialwebsite").then( function(){
     console.log("db connected");
 
    
@@ -39,6 +39,7 @@ const newConnectionSchema ={
     agency:String,
     nationality:String,
     cylindertype:String,
+    imageurl:String,
     
     
    
@@ -49,7 +50,7 @@ const newconnection = mongooes.model("newconnection",newConnectionSchema);
 
  
 // insert data
-app.post("/post",async(req,res)=>{
+app.post("/post", upload.single('image') ,async(req,res)=>{
    
     const data = new newconnection({
     firstname:req.body.firstname,
@@ -64,6 +65,7 @@ app.post("/post",async(req,res)=>{
     agency:req.body.agency,
     nationality:req.body.nationality,
     cylindertype:req.body.cylindertype,
+    imageurl:req.file.filename,
  
 
 
@@ -153,15 +155,15 @@ app.put("/booking/:_id",async(req,res)=>{
 
 
 
-// const storage = multer.diskStorage({
-//     destination: function(req,file,cb){
-//         cb(null , './uploads');
-//     },
-//     filename: function(req,file,cb){
-//         cb(null,Date.now() +'__' + file.originalname);
-//     },
-// });
-// const upload= multer({storage:storage});
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null , './uploads');
+    },
+    filename: function(req,file,cb){
+        cb(null,Date.now() +'__' + file.originalname);
+    },
+});
+const upload= multer({storage});
 
 
 
